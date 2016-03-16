@@ -7,6 +7,7 @@ html{
 body{
     margin: 0;
     padding: 0;
+
 }
 
 /************* BOX SIZES  *****************/
@@ -14,8 +15,14 @@ body{
     width: 30%;
     display: inline-block;
 }
+
 #tabs{
-    width: 70%;
+    width: 69%;
     display: inline-block;
     float: right;
+}
+
+.ui-widget{
+    margin: 0;
+    vertical-align: top;
 }
