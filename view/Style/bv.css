@@ -1,0 +1,21 @@
+/***************** GLOBAL PARAMETERS ************/
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/************* BOX SIZES  *****************/
+#accordion{
+    width: 30%;
+    display: inline-block;
+}
+#tabs{
+    width: 70%;
+    display: inline-block;
+    float: right;
+}
