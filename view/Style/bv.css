@@ -29,3 +29,35 @@ body{
     vertical-align: top;
     height: 100vh;
 }
+
+/***************** EDIT DOC *******************/
+#toolbar{
+    border-top: 1px grey solid;
+    border-left: 1px grey solid;
+    border-right: 1px grey solid;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+}
+
+#toolbar section img{
+    background-color: #A5A6A4;
+    border-radius: 2px;
+    border: 1px gray solid
+}
+
+
+.edit-doc{
+    padding: 20px;
+}
+
+.edit-doc section{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px 0;
+}
+
+#textBox{
+    padding: 10px;
+    background-color: #fff;
+}
