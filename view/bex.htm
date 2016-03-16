@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<title>Rich Text Editor</title>
+<script type="text/javascript">
+var oDoc;
+
+// Initialise oDoc, l'element HTML sur lequel portera execCommand
+function initDoc() {
+  oDoc = document.getElementById("textBox");
+}
+
+// Applique la commande sCmd sur la sélection de l'element oDoc via execCommand
+function formatDoc(sCmd) {
+	oDoc.focus();
+	document.execCommand(sCmd, false, null);
+}
+
+</script>
+<style type="text/css">
+.intLink { cursor: pointer; }
+img.intLink { border: 0; }
+#toolBar1 select { font-size:10px; }
+#textBox {
+  width: 540px;
+  height: 200px;
+  border: 1px #000000 solid;
+  padding: 12px;
+  /*overflow: scroll;*/
+}
+#textBox #sourceText {
+  padding: 0;
+  margin: 0;
+  min-width: 498px;
+  min-height: 200px;
+}
+#editMode label { cursor: pointer; }
+</style>
+
+</head>
+<body onload="initDoc();">
+<div id="toolBar2">
+<img class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
+<img class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
+</div>
+<div id="textBox" contenteditable="true"><p>Lorem ipsum</p></div>
+</body>
+</html>

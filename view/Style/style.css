@@ -1,0 +1,106 @@
+body
+{
+  background-color: white;
+  color: black;
+  font-family: arial, helvetica, sans-serif;
+  font-size:12pt;
+  width:90%;
+  margin: auto;
+  }
+
+  img
+  {float:right;}
+
+span {
+font-family: monospace;
+}
+
+h1, h2, h3, h4
+{
+  font-family: arial, helvetica, sans-serif;
+}
+
+h1 { text-align: center; }
+
+h2 { color: blue; text-decoration:underline; }
+h3 { color: blue; }
+h4 { color: red;}
+
+h2 {
+counter-reset:count_h3;
+}
+h3:before {
+  counter-increment:count_h3;
+  content:counter(count_h3) ". ";
+}
+
+.pre
+{
+  margin: 0 20px 0 20px;
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid thin black;
+  background-color: #eee;
+  }
+
+
+kbd
+{
+  background-color: yellow;
+  white-space: nowrap ;
+  }
+
+div.aremplir
+{ 
+  border: solid thin;
+  margin-bottom: 2ex;
+ }
+
+table.aremplir
+{
+  width: 100%;
+  margin-top: 1ex;
+  margin-bottom: 2ex;
+  border: solid;
+  border-collapse: collapse;
+  }
+table.aremplir th, table.aremplir td
+{
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  border: solid;
+  }
+
+div.exemple
+{
+  width: 60%;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1ex;
+  border: solid thin black;
+  background-color: silver;
+  }
+
+.centre
+{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+.hide { display: none }
+
+p.travail
+{ 
+  text-decoration: underline;
+  font-weight: bolder;
+  font-family: cursive;
+  }
