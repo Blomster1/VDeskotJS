@@ -22,7 +22,10 @@ body{
     float: right;
 }
 
+.ui-accordion-content { height: auto; }
+
 .ui-widget{
     margin: 0;
     vertical-align: top;
+    height: 100vh;
 }
