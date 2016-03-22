@@ -1,31 +1,12 @@
 	var memory = undefined;
 	var edition = false;
 	var topSide = true;
+	var zoneAffJQ;
 
 
 
 
 	$(document).ready(function() {
-		zoneAffJQ = $('#zone_affichage');
-		rab();
-
-		ajax("POST", majEtat, 'recupEtat.php', true, null);
-
-		var btns = $(".bouton_simple");
-
-		btns.click(function() {
-			$(this).affiche();
-		});
-
-		$('#calcul').click(function() {
-			calcul();
-		});
-
-		$('#CE').click(function() {
-			rab();
-		});
-
-
 		$.fn.affiche = function( ) {
 			zoneAffJQ.val(zoneAffJQ.val() + $(this).val());
 			console.log('[' + zoneAffJQ.val() + ']');
@@ -78,12 +59,105 @@
 		};
 		
 		$.fn.save = function(){
-			console.log(btn.attr('id'));
-			document.cookie = btn.attr('id') + "=" + btn.val();
+			console.log($(this).attr('id'));
+			document.cookie = $(this).attr('id') + "=" + $(this).val();
 			console.log(JSON.parse(toJSON()));
 
 			ajax("POST", null, "save.php", true, toJSON());
 		};
+		
+		$.fn.initValue = function(){
+			$(this).val('');
+		};
+		
+		
+		zoneAffJQ = $('#zone_affichage');
+		zoneAffJQ.initValue();
+
+		ajax("POST", majEtat, 'recupEtat.php', true, null);
+
+		var btns = $(".bouton_simple");
+
+		btns.click(function() {
+			$(this).affiche();
+		});
+
+		$('#calcul').click(function() {
+			try {
+				var valueTosend = zoneAffJQ.val().replace(/Math\./g, "");
+				ajax("GET", maj_zone_aff, "process.php", true, valueTosend);
+
+			} catch (err) {
+				$(this).openDialog('Erreur', err);
+				//alert("Erreur ! " + err);
+				console.error(err);
+			}
+		});
+
+		$('#CE').click(function() {
+			zoneAffJQ.initValue();
+		});
+		
+		$('#MC').click(function() {
+			memory = undefined;
+		});
+		
+		$('#MR').click(function() {
+			zoneAffJQ.val((memory === undefined) ? zoneAffJQ.val() : memory + zoneAffJQ.val());
+		});
+		
+		$('#MS').click(function() {
+			var regex = /^-?\d+\.?\d*$/;
+			
+			if (regex.test(zoneAffJQ.val()))
+				memory = zoneAffJQ.val();
+			else
+				$(this).openDialog('Erreur', 'Impossible d\'effectuer l\'action');
+				//alert("Impossible d'effectuer l'action");
+		});
+		
+		$('#plusMoins').click(function() {
+			zoneAffJQ.val((zoneAffJQ.val().charAt(0) == '-') ? zoneAffJQ.val().substr(1, zoneAffJQ.val().length) : ('-' + zoneAffJQ.val()));
+		});
+		
+		$('#E').click(function(){
+			var btnE = $(this);
+			var btnEdit = $('.bouton_libre');
+
+			if (!edition) {
+				edition = true;
+				btnE.css('color', 'red');
+
+				btnEdit.each(function() {
+					$(this)
+						.removeAttr('class')
+						.addClass('bouton_simple bouton_libre')
+						.unbind("click")
+						.dblclick(function(){
+							$(this).edit();
+						})
+						.attr("type", "text")
+						.unbind("blur");
+				});
+
+
+			} else {
+				edition = false;
+				btnE.removeAttr("style");
+
+				btnEdit.each(function() {
+					$(this)
+						.click(function(){
+							$(this).affiche();
+						})
+						.attr("type", "button")
+						.button();
+				});
+			}
+		});
+
+
+		
 		
 		zoneAffJQ.autocomplete({
 			source: "search.php",
@@ -92,8 +166,23 @@
 				$(this).val(ui.item ?
 					"Selected: " + ui.item.value + " aka " + ui.item.id :
 					"Nothing selected, input was " + this.value);
-			}
-		});
+			}})
+			.dblclick(function(){
+				var calc = $('#calc');
+				var aff = $('#ligne_affichage');
+
+				aff.removeChild(aff);
+				console.log(topSide);
+
+				if (topSide) {
+					topSide = false;
+					calc.append(aff);
+
+				} else {
+					topSide = true;
+					calc.prepend(aff);
+				}
+			});
 		
 		
 		
@@ -105,20 +194,28 @@
 		$("input[type='button']").button();
 
 
-		$('.draggable').draggable();
+		$('.draggable').draggable({
+			revert: true,
+			start: function(event, ui){
+				$('.draggable').addClass('noDraggable');
+				ui.helper.removeClass('noDraggable');
+				
+				//console.log(ui.helper.attr('class'));
+			},
+			stop: function(event, ui){
+				$('.draggable').removeClass('noDraggable');
+			}
+		});
 		$('.bouton_libre').droppable({
 			accept: ".draggable",
 			drop: function(event, ui) {
 				//console.log(ui);
+				if( edition ) {
+					ui.draggable.removeAttr('style');
+					$(this).val(ui.draggable.text());
 
-				ui.draggable.removeAttr('style');
-				$(this).val(ui.draggable.text());
-
-				save(ui.draggable);
-			},
-			over: function( event, ui ) {
-				/*$(this).removeClass('ui-state-default');
-				$(this).addClass('ui-state-hover');*/
+					ui.draggable.save();
+				}
 			}
 		});
 		
@@ -169,107 +266,8 @@
 		//return data;
 	}
 
-
-
-
-
-
-	function rab() {
-		zoneAffJQ.val('');
-	}
-
-	function calcul() {
-
-		try {
-			var valueTosend = zoneAffJQ.val().replace(/Math\./g, "");
-			ajax("GET", maj_zone_aff, "process.php", true, valueTosend);
-
-		} catch (err) {
-			$(this).openDialog('Erreur', err);
-			//alert("Erreur ! " + err);
-			console.error(err);
-		}
-	}
-
 	function maj_zone_aff(data) {
 		zoneAffJQ.val(eval(data));
-	}
-
-
-
-	function plusmoins() {
-		zoneAffJQ.val((zoneAffJQ.val().charAt(0) == '-') ? zoneAffJQ.val().substr(1, zoneAffJQ.val().length) : ('-' + zoneAffJQ.val()));
-	}
-
-	function range_memory() {
-		var regex = /^-?\d+\.?\d*$/;
-
-
-		if (regex.test(zoneAffJQ.val()))
-			memory = zoneAffJQ.val();
-		else
-			$(this).openDialog('Erreur', 'Impossible d\'effectuer l\'action');
-			//alert("Impossible d'effectuer l'action");
-	}
-
-	function affiche_memory() {
-		zoneAffJQ.val((memory === undefined) ? zoneAffJQ.val() : memory + zoneAffJQ.val());
-	}
-
-	function raz_memory() {
-		memory = undefined;
-	}
-
-	function mode_editon() {
-
-		var btnE = $('#E');
-		var btnEdit = $('.bouton_libre');
-
-		if (!edition) {
-			edition = true;
-			btnE.css('color', 'red');
-
-			btnEdit.each(function() {
-				$(this)
-					.unbind("onclick")
-					.dblclick(function(){
-						$(this).edit();
-					})
-					.unbind("onblur");
-			});
-
-			btnE.unbind("onclick");
-
-		} else {
-			edition = false;
-			btnE.removeAttr("style");
-
-			btnEdit.each(function() {
-				$(this)
-					.unbind("ondblclick")
-					.onclick(function(){
-						$(this).affiche();
-					})
-					.attr("type", "button");
-			});
-		}
-	}
-
-	function switchAffiche() {
-		var calc = $('#calc');
-		var aff = $('#ligne_affichage');
-
-		aff.removeChild(aff);
-		console.log(topSide);
-
-		if (topSide) {
-			topSide = false;
-			calc.append(aff);
-
-		} else {
-			topSide = true;
-			calc.prepend(aff)
-		}
 	}
 
 	function majEtat(data) {

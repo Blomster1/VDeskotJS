@@ -52,5 +52,10 @@ input /* pour mettre les boutons cote a cote*/
 	margin:auto;
 }
 
+.ui-accordion .ui-accordion-content { overflow: visible; }
+
+.noDraggable {
+	color: #e5e5e5;
+}
 
 

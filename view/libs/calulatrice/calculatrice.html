@@ -3,20 +3,20 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Calculatrice en javascript</title>
 	<link rel="stylesheet" type="text/css" href="calculatrice.css">
-	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.min.css">
-	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.structure.min.css">
-	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.theme.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/jquery-ui.theme.min.css">
 </head>
 <body>
 	<div id="calc">
 		<div id="ligne_affichage">
-			<input type="text" name="zone_affichage" id="zone_affichage" ondblclick="switchAffiche()"/>
+			<input type="text" name="zone_affichage" id="zone_affichage"/>
 		</div>
 		<div class="ligne_boutons">
-			<input type="button" class="bouton_classique" value="MC" onclick="raz_memory()"/>
-			<input id='MR' type="button"  class="bouton_classique" value="MR" onclick="affiche_memory()"/>
-			<input type="button"  class="bouton_classique" value="MS" onclick="range_memory()"/>
-			<input type="button"  class="bouton_classique" value="+-" onclick="plusmoins()"/>
+			<input type="button" class="bouton_classique" value="MC" id="MC"/>
+			<input type="button"  class="bouton_classique" value="MR"  id="MR"/>
+			<input type="button"  class="bouton_classique" value="MS"  id="MS"/>
+			<input type="button"  class="bouton_classique" value="+-"  id="plusMoins"/>
 			<input type="button" id="libre1" class="bouton_simple bouton_libre" value=" "/>
 		</div>
 		<div class="ligne_boutons">
@@ -49,7 +49,7 @@
 		</div>
 		<div class="ligne_boutons">
 			<input type="button" class="bouton_classique bouton_simple" value="0"/>
-			<input id='E' type="button" class="bouton_classique" value="E" onclick="mode_editon()"/>
+			<input type="button" class="bouton_classique" value="E" id="E"/>
 			<input type="button" class="bouton_classique bouton_simple" value="."/>
 			<input type="button" class="bouton_classique" value="=" id="calcul"/>
 			<input type="button" id="libre6" class="bouton_simple bouton_libre" value=" "/>
@@ -77,7 +77,7 @@
 	</div>
 	<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="calculatriceJQ.js"></script>
-	<script src="jqueryui/jquery-ui.min.js"></script>
+	<script src="../jquery-ui/jquery-ui.min.js"></script>
 </body>
 </html>
 
