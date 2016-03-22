@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Calculatrice en javascript</title>
+	<link rel="stylesheet" type="text/css" href="calculatrice.css">
+	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.theme.min.css">
+</head>
+<body>
+	<div id="calc">
+		<div id="ligne_affichage">
+			<input type="text" name="zone_affichage" id="zone_affichage" ondblclick="switchAffiche()"/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique" value="MC" onclick="raz_memory()"/>
+			<input id='MR' type="button"  class="bouton_classique" value="MR" onclick="affiche_memory()"/>
+			<input type="button"  class="bouton_classique" value="MS" onclick="range_memory()"/>
+			<input type="button"  class="bouton_classique" value="+-" onclick="plusmoins()"/>
+			<input type="button" id="libre1" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique" value="CE" id="CE"/>
+			<input type="button" class="bouton_classique bouton_simple" value="("/>
+			<input type="button" class="bouton_classique bouton_simple" value=")"/>
+			<input type="button" class="bouton_classique bouton_simple" value="/"/>
+			<input type="button" id="libre2" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique bouton_simple" value="7"/>
+			<input type="button" class="bouton_classique bouton_simple" value="8"/>
+			<input type="button" class="bouton_classique bouton_simple" value="9"/>
+			<input type="button" class="bouton_classique bouton_simple" value="*"/>
+			<input type="button" id="libre3" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique bouton_simple" value="4"/>
+			<input type="button" class="bouton_classique bouton_simple" value="5"/>
+			<input type="button" class="bouton_classique bouton_simple" value="6"/>
+			<input type="button" class="bouton_classique bouton_simple" value="-"/>
+			<input type="button" id="libre4" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique bouton_simple" value="1"/>
+			<input type="button" class="bouton_classique bouton_simple" value="2"/>
+			<input type="button" class="bouton_classique bouton_simple" value="3"/>
+			<input type="button" class="bouton_classique bouton_simple" value="+"/>
+			<input type="button" id="libre5" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		<div class="ligne_boutons">
+			<input type="button" class="bouton_classique bouton_simple" value="0"/>
+			<input id='E' type="button" class="bouton_classique" value="E" onclick="mode_editon()"/>
+			<input type="button" class="bouton_classique bouton_simple" value="."/>
+			<input type="button" class="bouton_classique" value="=" id="calcul"/>
+			<input type="button" id="libre6" class="bouton_simple bouton_libre" value=" "/>
+		</div>
+		
+		<div class="ligne_boutons" id="accordion">
+			<h3>constantes et fonctions disponibles</h3>
+			<div>
+				<span class="draggable" id="Math.abs" >Math.abs</span>,
+				<span class="draggable" id="Math.ceil" >Math.ceil</span>, 
+				<span class="draggable" id="Math.cos" >Math.cos</span>,
+				<span class="draggable" id="Math.E" >Math.E</span>,
+				<span class="draggable" id="Math.exp" >Math.exp</span>,
+				<span class="draggable" id="Math.floor" >Math.floor</span>,
+				<span class="draggable" id="Math.log" >Math.log</span>,
+				<span class="draggable" id="Math.max" >Math.max</span>,
+				<span class="draggable" id="Math.min" >Math.min</span>,
+				<span class="draggable" id="Math.PI" >Math.PI</span>,
+				<span class="draggable" id="Math.pow" >Math.pow</span>,
+				<span class="draggable" id="Math.round" >Math.round</span >,
+				<span class="draggable" id="Math.sin" >Math.sin</span>,
+				<span class="draggable" id="Math.sqrt" >Math.sqrt</span>
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="calculatriceJQ.js"></script>
+	<script src="jqueryui/jquery-ui.min.js"></script>
+</body>
+</html>
+

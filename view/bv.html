@@ -10,6 +10,7 @@
 	   <link rel="stylesheet" href="libs/jsTree/themes/default/style.min.css" />
     </head>
     <body onload="initDoc();">
+	    <div class="container p40"> 
     <div id="accordion">
         <h3>Homedir</h3>
 	   <div>
@@ -27,8 +28,10 @@
             <div>
 
             </div>
-    </div><!--
-    --><div id="tabs">
+    </div>
+	    </div><!--
+	    --><div class="container p60">
+		    <div id="tabs">
         <ul>
             <li><a href="#tabs-1">Nunc tincidunt</a></li>
             <li><a href="#tabs-2">Proin dolor</a></li>
@@ -37,19 +40,19 @@
         <div class="edit-doc" id="tabs-1">
             <div id="toolbar">
                 <section>
-                    <img class="intLink" title="Bold" onclick="formatDoc('bold');" src="../data/icons/edit-bold.png" />
-                    <img class="intLink" title="Italic" onclick="formatDoc('italic');" src="../data/icons/edit-italic.png" />
-                    <img class="intLink" title="Underline" onclick="formatDoc('underline');" src="../data/icons/edit-underline.png" />
+                    <img class="intLink" title="Bold" onclick="formatDoc('bold');" src="../view/libs/jsTree/icons/edit-bold.png" />
+                    <img class="intLink" title="Italic" data-action="italic" src="../view/libs/jsTree/icons/edit-italic.png" />
+                    <img class="intLink" title="Underline" onclick="formatDoc('underline');" src="../view/libs/jsTree/icons/edit-underline.png" />
                 </section>
                 <section>
-                    <img class="intLink" title="increaseFontSize" onclick="formatDoc('increaseFontSize');" src="../data/icons/edit-size-up.png" alt="">
-                    <img class="intLink" title="decreaseFontSize" onclick="formatDoc('decreaseFontSize');" src="../data/icons/edit-size-down.png" alt="">
+                    <img class="intLink" title="increaseFontSize" onclick="formatDoc('increaseFontSize');" src="../view/libs/jsTree/icons/edit-size-up.png" alt="">
+                    <img class="intLink" title="decreaseFontSize" onclick="formatDoc('decreaseFontSize');" src="../view/libs/jsTree/icons/edit-size-down.png" alt="">
                 </section>
                 <section id="alignment">
-                    <img class="intLink" title="left" onclick="formatDoc('justifyLeft');" src="../data/icons/edit-alignment.png" alt="">
+                    <img class="intLink" title="left" onclick="formatDoc('justifyLeft');" src="../view/libs/jsTree/icons/edit-alignment.png" alt="">
 
-                    <img class="intLink" title="RightAlign" onclick="formatDoc('justifyRight');" src="../data/icons/edit-alignment-right.png" alt="">
-                    <img class="intLink" title="Justify" onclick="formatDoc('justifyFull');" src="../data/icons/edit-alignment-justify.png" alt="">
+                    <img class="intLink" title="RightAlign" onclick="formatDoc('justifyRight');" src="../view/libs/jsTree/icons/edit-alignment-right.png" alt="">
+                    <img class="intLink" title="Justify" onclick="formatDoc('justifyFull');" src="../view/libs/jsTree/icons/edit-alignment-justify.png" alt="">
                 </section>
             </div>
             <div id="textBox" contenteditable="true"><p>Lorem ipsum</p></div>
@@ -62,6 +65,7 @@
           <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
         </div>
     </div>
+	    </div>
     <script type="text/javascript" src="libs/jquery/jquery.js"></script>
     <script type="text/javascript" src="libs/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="libs/jquery/jquery.cookie.js"></script>

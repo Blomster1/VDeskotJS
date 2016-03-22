@@ -7,27 +7,28 @@ html{
 body{
     margin: 0;
     padding: 0;
-
 }
 
 /************* BOX SIZES  *****************/
-#accordion{
-    width: 30%;
-    display: inline-block;
+.container{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	height: 100vh;
 }
+.container.p60 { width: 60%; }
+.container.p40 { width: 40%; }
 
-#tabs{
-    width: 69%;
-    display: inline-block;
-    float: right;
+#accordion, #tabs { margin: 0; padding: 0; border: 0; }
+#accordion > .content, #tabs > .content {
+	padding: 10px;
+	margin: 0;
 }
-
-.ui-accordion-content { height: auto; }
 
 .ui-widget{
     margin: 0;
-    vertical-align: top;
-    height: 100vh;
+    height: 100%;
 }
 
 /***************** EDIT DOC *******************/

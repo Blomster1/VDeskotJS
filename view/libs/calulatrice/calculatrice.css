@@ -1,0 +1,56 @@
+#calc
+{
+	width:338px;
+	background-color:#eeeeee;
+	border:2px solid #CCCCCC;
+	margin:auto; /*centre la calculatrice dans la page */
+	padding:15px;
+}
+
+#titre
+{
+	font-weight: bold;
+}
+
+
+#ligne_affichage
+{
+	margin-top:10px;
+
+}
+
+#zone_affichage
+{
+	font-size:20px;
+	text-align:right;
+	width:325px;
+
+}
+
+.ligne_boutons
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+input /* pour mettre les boutons cote a cote*/
+{
+	display:inline-block;
+}
+
+.bouton_classique /* boutons non editable */
+{
+	width:45px;
+	font-size:18px;
+	margin:2px;
+}
+
+.bouton_libre /* boutons editables */
+{
+	width:115px;
+	font-size:20px;
+	margin:auto;
+}
+
+
+
