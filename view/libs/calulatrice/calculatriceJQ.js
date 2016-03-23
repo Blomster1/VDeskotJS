@@ -7,6 +7,23 @@
 
 
 	$(document).ready(function() {
+		$.fn.runCalc = function(){
+			$this = $(this);
+			
+			$.get( "calculatrice.html", function(data) {
+				$this.html(data);
+				console.log("Load was performed.");
+			});
+			
+			
+			$( "#accordion" ).accordion({
+				collapsible: true
+			});
+
+			$("input[type='button']").button();
+			
+		};
+		
 		$.fn.affiche = function( ) {
 			zoneAffJQ.val(zoneAffJQ.val() + $(this).val());
 			console.log('[' + zoneAffJQ.val() + ']');
@@ -183,15 +200,6 @@
 					calc.prepend(aff);
 				}
 			});
-		
-		
-		
-		
-		$( "#accordion" ).accordion({
-			collapsible: true
-		});
-		
-		$("input[type='button']").button();
 
 
 		$('.draggable').draggable({
@@ -218,7 +226,6 @@
 				}
 			}
 		});
-		
 		
 	});
 
