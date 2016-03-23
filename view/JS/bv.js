@@ -88,6 +88,23 @@
 		});
 	});
 
+
+    $( "#tabs" ).tabs({
+		heightStyle: "fill"
+   	});
+    $( "#accordion" ).accordion({
+		heightStyle: "fill"
+   	});
+
+	 doc = $('#textBox');
+	 $('.intLink').click( function(){
+		doc.focus();
+		//console.log($(this).data('action'));
+		document.execCommand($(this).data('action'), false, null);
+		//formatDoc( $(this).data('action') );
+	 });
+});
+
 //EDITEUR DE text
 	var doc;
 
@@ -101,4 +118,4 @@
 		document.execCommand(sCmd, false, null);
 	}
 
-// onclick="formatDoc('italic');" 
+// onclick="formatDoc('italic');"

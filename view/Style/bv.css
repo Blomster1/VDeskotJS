@@ -39,12 +39,7 @@ body{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     padding: 5px;
-}
-
-#toolbar section img{
-    background-color: #A5A6A4;
-    border-radius: 2px;
-    border: 1px gray solid
+    background-color: gray;
 }
 
 
@@ -52,13 +47,22 @@ body{
     padding: 20px;
 }
 
+section {
+    display: inline-block;
+}
+
 .edit-doc section{
     display: inline-block;
     vertical-align: middle;
     margin: 5px 0;
+    display: inline-block;
+    padding-right: 10px;
 }
 
 #textBox{
     padding: 10px;
     background-color: #fff;
+    border: 1px gray solid;
+    border-top: none;
+    height: 80vh;
 }
