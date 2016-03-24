@@ -107,10 +107,13 @@
 					});
 
 				} else {
+					console.log(data);
+					
 					console.log("DELETE ------------- [ D ] : " + data.node.text);
 					$.post('./libs/jsTree/delete.php', {
 						name: data.node.id,
-						dir: true
+						dir: true,
+						childs: data.node.children_d
 					});
 				}
 			})
