@@ -107,8 +107,6 @@
 					});
 
 				} else {
-					console.log(data);
-					
 					console.log("DELETE ------------- [ D ] : " + data.node.text);
 					$.post('./libs/jsTree/delete.php', {
 						name: data.node.id,
@@ -119,7 +117,23 @@
 			})
 			.on('move_node.jstree', function (e, data) {
 				jsTreeToJSON(data);
-				console.log("MOVE ------------- : " + data.node.text);
+				
+				if( data.node.type === 'file' ){
+					var nameFileNew = data.node.text + "." + data.parent;
+					var oldNameFile = data.node.text + "." + data.old_parent;
+					console.log("MOVE ------------- [ F ] : " + oldNameFile + " => " + nameFileNew);
+
+					$.post('./libs/jsTree/rename.php', {
+						old: oldNameFile,
+						nouv: nameFileNew
+					});
+
+				} else
+					console.log("MOVE ------------- [ D ] : " + data.node.text);
+					
+			})
+			.on('changed.jstree', function (e, data) {
+				showSelectedItem(data.node);
 			});
 
 
@@ -140,6 +154,29 @@
 	});
 
 //EDITEUR DE text
+	var newEditDoc = '<div id="toolbar"><section><img class="intLink" title="Save" onclick="" src="../view/libs/jsTree/icons/document-copy.png"/></section><section><img class="intLink" title="Bold" onclick="formatDoc(\'bold\');" src="../view/libs/jsTree/icons/edit-bold.png" /><img class="intLink" title="Italic" data-action="italic" src="../view/libs/jsTree/icons/edit-italic.png" /><img class="intLink" title="Underline" onclick="formatDoc(\'underline\');" src="../view/libs/jsTree/icons/edit-underline.png" /></section><section><img class="intLink" title="undo" data-action="undo" src="../view/libs/jsTree/icons/arrow-return-180-left.png" /><img class="intLink" title="redo" data-action="redo" src="../view/libs/jsTree/icons/arrow-curve.png" /></section><section><img class="intLink" title="increaseFontSize" onclick="formatDoc(\'increaseFontSize\');" src="../view/libs/jsTree/icons/edit-size-up.png" alt=""><img class="intLink" title="decreaseFontSize" onclick="formatDoc(\'decreaseFontSize\');" src="../view/libs/jsTree/icons/edit-size-down.png" alt=""></section><section id="alignment"><img class="intLink" title="left" onclick="formatDoc(\'justifyLeft\');" src="../view/libs/jsTree/icons/edit-alignment.png" alt=""><img class="intLink" title="RightAlign" onclick="formatDoc(\'justifyRight\');" src="../view/libs/jsTree/icons/edit-alignment-right.png" alt=""><img class="intLink" title="Justify" onclick="formatDoc(\'justifyFull\');" src="../view/libs/jsTree/icons/edit-alignment-justify.png" alt=""></section><section><img class="intLink" title="listUnordered" onclick="formatDoc(\'insertUnorderedList\');" src="../view/libs/jsTree/icons/edit-list.png" alt=""><img class="intLink" title="listOrdered" onclick="formatDoc(\'insertOrderedList\');" src="../view/libs/jsTree/icons/edit-list-order.png" alt=""></section></div>';
+
+	function showSelectedItem(item){
+		addTab(item);
+	}
+
+	function addTab(item) {
+		tabTitle = item.text;
+		tabContent = newEditDoc+"<div id=\"textBox\" contenteditable=\"true\"><p>Lorem ipsum</p></div>";
+		tabTemplate = "<li><a href='#{href}'>#{label}</a></li>";
+		tabCounter = $('#tabs ul li').length+1;
+		var tabs = $("#tabs").tabs();
+  		var label = tabTitle || "Tab " + tabCounter,
+		id = "tabs-" + tabCounter,
+		li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+		tabContentHtml = tabContent || "Tab " + tabCounter + " content.";
+
+		tabs.find( ".ui-tabs-nav" ).append( li );
+		tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
+		tabs.tabs( "refresh" );
+		tabCounter++;
+	}
+
 	var doc;
 
 	function formatDoc(sCmd) {
