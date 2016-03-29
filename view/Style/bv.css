@@ -42,6 +42,13 @@ body{
     background-color: gray;
 }
 
+span.ui-icon-close{
+    display: inline-block;
+    position: relative;
+    top: 9px;
+    right: 9px;
+}
+
 
 .edit-doc{
     padding: 20px;
@@ -59,7 +66,7 @@ section {
     padding-right: 10px;
 }
 
-#textBox{
+.textBox{
     padding: 10px;
     background-color: #fff;
     border: 1px gray solid;
