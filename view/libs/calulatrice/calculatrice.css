@@ -5,6 +5,7 @@
 	border:2px solid #CCCCCC;
 	margin:auto; /*centre la calculatrice dans la page */
 	padding:15px;
+	width: 330px;
 }
 
 #titre

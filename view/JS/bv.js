@@ -134,7 +134,7 @@
 			})
 			.on('changed.jstree', function (e, data) {
 				var item = data.node;
-				if(data.node.type == "file" ){
+				if( item !== undefined && data.node.type == "file" ){
 					tabTitle = item.text;
 					nameFile = tabTitle+"."+item.parent;
 					if(findTab(item.text)){
@@ -171,6 +171,7 @@
   			$( "#" + panelId ).remove();
   			tabs.tabs( "refresh" );
 			});
+			
 		$("#accordion").accordion({
 			heightStyle: "fill"
 		});
@@ -206,6 +207,8 @@
 				datetime: new Date(2014, 7, 10, 16)
 			}]
 		});
+		
+		$('#calc').runCalc();
 	});
 
 //EDITEUR DE text

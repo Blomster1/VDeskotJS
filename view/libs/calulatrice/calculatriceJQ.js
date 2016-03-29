@@ -5,16 +5,9 @@
 
 	$(document).ready(function() {
 		$.fn.runCalc = function(){
-			$this = $(this);
-
-			$.get( "calculatrice.html", function(data) {
-				$this.html(data);
-				console.log("Load was performed.");
-			});
-
-
-			$( "#accordion" ).accordion({
-				collapsible: true
+			$( "#listeChoixCalc" ).accordion({
+				collapsible: true,
+				heightStyle: "content"
 			});
 
 			$("input[type='button']").button();
@@ -223,6 +216,8 @@
 				}
 			}
 		});
+		
+		//$('#calc').runCalc();
 
 	});
 
