@@ -3,32 +3,29 @@
 	var topSide = true;
 	var zoneAffJQ;
 
-
-
-
 	$(document).ready(function() {
 		$.fn.runCalc = function(){
 			$this = $(this);
-			
+
 			$.get( "calculatrice.html", function(data) {
 				$this.html(data);
 				console.log("Load was performed.");
 			});
-			
-			
+
+
 			$( "#accordion" ).accordion({
 				collapsible: true
 			});
 
 			$("input[type='button']").button();
-			
+
 		};
-		
+
 		$.fn.affiche = function( ) {
 			zoneAffJQ.val(zoneAffJQ.val() + $(this).val());
 			console.log('[' + zoneAffJQ.val() + ']');
 		};
-		
+
 		$.fn.openDialog = function( titre, text ){
 			$('<div/>', { title: titre})
 				.html( text )
@@ -54,7 +51,7 @@
 
 				});
 		};
-		
+
 		$.fn.edit = function(){
 			$(this)
 				.attr("type", "text")
@@ -65,7 +62,7 @@
 					$(this).save();
 				});
 		};
-		
+
 		$.fn.fix = function(){
 			$(this)
 				.attr("type", "button")
@@ -74,24 +71,24 @@
 				})
 				.save();
 		};
-		
+
 		$.fn.save = function(){
 			console.log($(this).attr('id'));
 			document.cookie = $(this).attr('id') + "=" + $(this).val();
 			console.log(JSON.parse(toJSON()));
 
-			ajax("POST", null, "save.php", true, toJSON());
+			ajax("POST", null, "libs/calulatrice/save.php", true, toJSON());
 		};
-		
+
 		$.fn.initValue = function(){
 			$(this).val('');
 		};
-		
-		
+
+
 		zoneAffJQ = $('#zone_affichage');
 		zoneAffJQ.initValue();
 
-		ajax("POST", majEtat, 'recupEtat.php', true, null);
+		ajax("POST", majEtat, 'libs/calulatrice/recupEtat.php', true, null);
 
 		var btns = $(".bouton_simple");
 
@@ -102,7 +99,7 @@
 		$('#calcul').click(function() {
 			try {
 				var valueTosend = zoneAffJQ.val().replace(/Math\./g, "");
-				ajax("GET", maj_zone_aff, "process.php", true, valueTosend);
+				ajax("GET", maj_zone_aff, "libs/calulatrice/process.php", true, valueTosend);
 
 			} catch (err) {
 				$(this).openDialog('Erreur', err);
@@ -114,29 +111,29 @@
 		$('#CE').click(function() {
 			zoneAffJQ.initValue();
 		});
-		
+
 		$('#MC').click(function() {
 			memory = undefined;
 		});
-		
+
 		$('#MR').click(function() {
 			zoneAffJQ.val((memory === undefined) ? zoneAffJQ.val() : memory + zoneAffJQ.val());
 		});
-		
+
 		$('#MS').click(function() {
 			var regex = /^-?\d+\.?\d*$/;
-			
+
 			if (regex.test(zoneAffJQ.val()))
 				memory = zoneAffJQ.val();
 			else
 				$(this).openDialog('Erreur', 'Impossible d\'effectuer l\'action');
 				//alert("Impossible d'effectuer l'action");
 		});
-		
+
 		$('#plusMoins').click(function() {
 			zoneAffJQ.val((zoneAffJQ.val().charAt(0) == '-') ? zoneAffJQ.val().substr(1, zoneAffJQ.val().length) : ('-' + zoneAffJQ.val()));
 		});
-		
+
 		$('#E').click(function(){
 			var btnE = $(this);
 			var btnEdit = $('.bouton_libre');
@@ -174,10 +171,10 @@
 		});
 
 
-		
-		
+
+
 		zoneAffJQ.autocomplete({
-			source: "search.php",
+			source: "libs/calulatrice/search.php",
 			minLength: 2,
 			select: function(event, ui) {
 				$(this).val(ui.item ?
@@ -207,7 +204,7 @@
 			start: function(event, ui){
 				$('.draggable').addClass('noDraggable');
 				ui.helper.removeClass('noDraggable');
-				
+
 				//console.log(ui.helper.attr('class'));
 			},
 			stop: function(event, ui){
@@ -226,7 +223,7 @@
 				}
 			}
 		});
-		
+
 	});
 
 

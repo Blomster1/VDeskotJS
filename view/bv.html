@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.structure.min.css">
 	   <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.theme.min.css">
 	   <link rel="stylesheet" href="libs/jsTree/themes/default/style.min.css" />
+       <link rel="stylesheet" href="libs/calulatrice/calculatrice.css">
        <link rel="stylesheet" href="libs/eCalendar/css/jquery.e-calendar.css">
     </head>
     <body>
@@ -18,9 +19,73 @@
 		   <div id="jsTree"></div>
 	   </div>
         <h3>Calculette</h3>
-            <div>
+                <div id="calc">
+                	<div id="ligne_affichage">
+                		<input type="text" name="zone_affichage" id="zone_affichage"/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique" value="MC" id="MC"/>
+                		<input type="button"  class="bouton_classique" value="MR"  id="MR"/>
+                		<input type="button"  class="bouton_classique" value="MS"  id="MS"/>
+                		<input type="button"  class="bouton_classique" value="+-"  id="plusMoins"/>
+                		<input type="button" id="libre1" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique" value="CE" id="CE"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="("/>
+                		<input type="button" class="bouton_classique bouton_simple" value=")"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="/"/>
+                		<input type="button" id="libre2" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique bouton_simple" value="7"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="8"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="9"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="*"/>
+                		<input type="button" id="libre3" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique bouton_simple" value="4"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="5"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="6"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="-"/>
+                		<input type="button" id="libre4" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique bouton_simple" value="1"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="2"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="3"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="+"/>
+                		<input type="button" id="libre5" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
+                	<div class="ligne_boutons">
+                		<input type="button" class="bouton_classique bouton_simple" value="0"/>
+                		<input type="button" class="bouton_classique" value="E" id="E"/>
+                		<input type="button" class="bouton_classique bouton_simple" value="."/>
+                		<input type="button" class="bouton_classique" value="=" id="calcul"/>
+                		<input type="button" id="libre6" class="bouton_simple bouton_libre" value=" "/>
+                	</div>
 
-            </div>
+                	<div class="ligne_boutons" id="accordion">
+                		<h3>constantes et fonctions disponibles</h3>
+                		<div>
+                			<span class="draggable" id="Math.abs" >Math.abs</span>,
+                			<span class="draggable" id="Math.ceil" >Math.ceil</span>,
+                			<span class="draggable" id="Math.cos" >Math.cos</span>,
+                			<span class="draggable" id="Math.E" >Math.E</span>,
+                			<span class="draggable" id="Math.exp" >Math.exp</span>,
+                			<span class="draggable" id="Math.floor" >Math.floor</span>,
+                			<span class="draggable" id="Math.log" >Math.log</span>,
+                			<span class="draggable" id="Math.max" >Math.max</span>,
+                			<span class="draggable" id="Math.min" >Math.min</span>,
+                			<span class="draggable" id="Math.PI" >Math.PI</span>,
+                			<span class="draggable" id="Math.pow" >Math.pow</span>,
+                			<span class="draggable" id="Math.round" >Math.round</span >,
+                			<span class="draggable" id="Math.sin" >Math.sin</span>,
+                			<span class="draggable" id="Math.sqrt" >Math.sqrt</span>
+                		</div>
+                	</div>
+                </div>
         <h3>Calendrier</h3>
             <div>
                 <div id="calendar"></div>
@@ -44,5 +109,6 @@
     <script type="text/javascript" src="libs/calendar/clndr.min.js"></script>
     <script type="text/javascript" src="libs/eCalendar/js/jquery.e-calendar.js"></script>
     <script type="text/javascript" src="JS/bv.js"></script>
+    <script type="text/javascript" src="libs/calulatrice/calculatriceJQ.js"></script>
     </body>
 </html>

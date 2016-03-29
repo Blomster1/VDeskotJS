@@ -134,7 +134,7 @@
 			})
 			.on('changed.jstree', function (e, data) {
 				var item = data.node;
-				if(item.type == "file" ){
+				if(data.node.type == "file" ){
 					tabTitle = item.text;
 					nameFile = tabTitle+"."+item.parent;
 					if(findTab(item.text)){
@@ -216,10 +216,11 @@
 		tabs = $('#tabs>ul>li>a');
 		var bool = false;
 		$.each(tabs,function(key, value) {
-			if(value.text == name){
+			if(value.text.trim() == name){
 				bool = true;
 			}
 		});
+		console.log(bool);
 		return bool;
 	}
 
