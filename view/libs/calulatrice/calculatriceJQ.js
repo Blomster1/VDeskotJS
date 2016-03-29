@@ -11,12 +11,104 @@
 			});
 
 			$("input[type='button']").button();
+			
+			$(this)
+				.attr('tabindex', 1)
+				.keypress(function( event ) {
+					//event.preventDefault();
+					var k = event.which;
+					//console.log(k);
+					if( !zoneAffJQ.is(':focus') ) {
+						// 1
+						if( k == 38 || k == 49 )
+							zoneAffJQ.affiche(1);
+						// 2
+						else if( k == 50 || k == 233 )
+							zoneAffJQ.affiche(2);
+						// 3
+						else if( k == 51 || k == 34 )
+							zoneAffJQ.affiche(3);
+						// 4
+						else if( k == 39 || k == 52 )
+							zoneAffJQ.affiche(4);
+						// 5
+						else if( k == 53 )
+							zoneAffJQ.affiche(5);
+						// 6
+						else if( k == 54 )
+							zoneAffJQ.affiche(6);
+						// 7
+						else if( k == 55 || k == 232 )
+							zoneAffJQ.affiche(7);
+						// 8
+						else if( k == 95 || k == 56 )
+							zoneAffJQ.affiche(8);
+						// 9
+						else if( k == 57 || k == 231 )
+							zoneAffJQ.affiche(9);
+						// 0
+						else if( k == 48 || k == 224 )
+							zoneAffJQ.affiche(0);
+						// ENTER
+						else if( k == 13 )
+							$('#calcul').trigger('click');
+
+						// +
+						else if( k == 43 || k == 61 )
+							zoneAffJQ.affiche('+');
+
+						// -
+						else if( k == 45)
+							zoneAffJQ.affiche('-');
+
+						// *
+						else if( k == 42 )
+							zoneAffJQ.affiche('*');
+
+						// /
+						else if( k == 47 || k == 58 )
+							zoneAffJQ.affiche('/');
+
+						// .
+						else if( k == 46 || k == 59 )
+							zoneAffJQ.affiche('.');
+
+						// (
+						else if( k == 40 )
+							zoneAffJQ.affiche('(');
+
+						// )
+						else if( k == 41 )
+							zoneAffJQ.affiche(')');
+					}
+					
+				})
+				.keydown(function( event ) {
+					var k = event.keyCode;
+					console.log(k);
+				
+					// BACKSPACE
+					if( k == 8 ) {
+						event.preventDefault();
+						var value = zoneAffJQ.val();
+						zoneAffJQ.val( value.substr( 0, value.length - 1 ) );
+						console.log(value.substr( 0, value.length - 1 ));
+					}
+				})
+				.focus();
 
 		};
 
-		$.fn.affiche = function( ) {
-			zoneAffJQ.val(zoneAffJQ.val() + $(this).val());
-			console.log('[' + zoneAffJQ.val() + ']');
+		$.fn.affiche = function( val ) {
+			
+			//console.log(val);
+			
+			if( val === undefined )
+				zoneAffJQ.val(zoneAffJQ.val() + $(this).val());
+			else 
+				zoneAffJQ.val(zoneAffJQ.val() + val);
+			
+			//console.log('[' + zoneAffJQ.val() + ']');
 		};
 
 		$.fn.openDialog = function( titre, text ){
@@ -137,13 +229,17 @@
 
 				btnEdit.each(function() {
 					$(this)
-						.removeAttr('class')
+						.button('destroy')
 						.addClass('bouton_simple bouton_libre')
 						.unbind("click")
 						.dblclick(function(){
 							$(this).edit();
 						})
 						.attr("type", "text")
+						.css({
+							width: "100px",
+							padding: "5px"
+						})
 						.unbind("blur");
 				});
 
@@ -154,6 +250,7 @@
 
 				btnEdit.each(function() {
 					$(this)
+						.removeAttr("style")
 						.click(function(){
 							$(this).affiche();
 						})
@@ -216,6 +313,8 @@
 				}
 			}
 		});
+		
+		
 		
 		//$('#calc').runCalc();
 
